@@ -4,10 +4,14 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ArticleFixtures extends Fixture
+class ArticleFixtures extends Fixture implements DependentFixtureInterface
 {
+    public const ARTICLE_1_REFERENCE = 'article-1';
+    public const ARTICLE_2_REFERENCE = 'article-2';
+
     public function load(ObjectManager $manager)
     {
         /** @var \App\Entity\User Regerence to the dummy user */
@@ -34,10 +38,11 @@ class ArticleFixtures extends Fixture
             and control trees (n = 56) in two managed lowland
             broadleave-dominated forests in France. We hypothesized that:");
 
-        $article->setUserId($userUser->getId());
+        $article->setUser($userUser);
         $article->setCreatedAt(\date_create());
 
         $manager->persist($article);
+        $this->addReference(self::ARTICLE_1_REFERENCE, $article);
 
         // Dummy article 2 *****************************************************
         $article = new Article();
@@ -54,11 +59,19 @@ class ArticleFixtures extends Fixture
             Hence, Raman spectra of these solutions were acquired in a −30 to
             10 °C temperature range. This enabled us to build the experimental
             phase diagram of the urea–water binary system.");
-        $article->setUserId($userUser->getId());
+        $article->setUser($userUser);
         $article->setCreatedAt(\date_create());
 
         $manager->persist($article);
+        $this->addReference(self::ARTICLE_2_REFERENCE, $article);
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return array(
+            UserFixtures::class,
+        );
     }
 }
