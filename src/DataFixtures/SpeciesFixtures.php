@@ -19,8 +19,9 @@ class SpeciesFixtures extends Fixture implements DependentFixtureInterface
 
         // Dummy species 1 *****************************************************
         $species = new Species();
-        $species->setCommonName('The awesome species');
-        $species->setScientificName('Awesomus_species');
+        $species->setGenus('Awesomus');
+        $species->setSpecies('species');
+        $species->setVariety('big bada boum');
         $species->setCreatedAt(\date_create());
         $species->setUser($userUser);
 
@@ -29,8 +30,8 @@ class SpeciesFixtures extends Fixture implements DependentFixtureInterface
 
         // Dummy species 2 *****************************************************
         $species = new Species();
-        $species->setCommonName('The best species');
-        $species->setScientificName('Bestus_bestus');
+        $species->setGenus('Bestus');
+        $species->setSpecies('species');
         $species->setCreatedAt(\date_create());
         $species->setUser($userUser);
 

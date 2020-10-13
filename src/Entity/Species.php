@@ -20,16 +20,6 @@ class Species
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=60)
-     */
-    private $common_name;
-
-    /**
-     * @ORM\Column(type="string", length=60)
-     */
-    private $scientific_name;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="species")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -45,6 +35,21 @@ class Species
      */
     private $speciesFeatures;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $genus;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $species;
+
+    /**
+     * @ORM\Column(type="string", length=60, nullable=true)
+     */
+    private $variety;
+
     public function __construct()
     {
         $this->speciesFeatures = new ArrayCollection();
@@ -53,30 +58,6 @@ class Species
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCommonName(): ?string
-    {
-        return $this->common_name;
-    }
-
-    public function setCommonName(string $common_name): self
-    {
-        $this->common_name = $common_name;
-
-        return $this;
-    }
-
-    public function getScientificName(): ?string
-    {
-        return $this->scientific_name;
-    }
-
-    public function setScientificName(string $scientific_name): self
-    {
-        $this->scientific_name = $scientific_name;
-
-        return $this;
     }
 
     public function getUser(): ?User
@@ -130,6 +111,42 @@ class Species
                 $speciesFeature->setSpecies(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getGenus(): ?string
+    {
+        return $this->genus;
+    }
+
+    public function setGenus(string $genus): self
+    {
+        $this->genus = $genus;
+
+        return $this;
+    }
+
+    public function getSpecies(): ?string
+    {
+        return $this->species;
+    }
+
+    public function setSpecies(string $species): self
+    {
+        $this->species = $species;
+
+        return $this;
+    }
+
+    public function getVariety(): ?string
+    {
+        return $this->variety;
+    }
+
+    public function setVariety(?string $variety): self
+    {
+        $this->variety = $variety;
 
         return $this;
     }
