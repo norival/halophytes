@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SpeciesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,6 +39,16 @@ class Species
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    /**
+     * @ORM\OneToMany(targetEntity=SpeciesFeature::class, mappedBy="species")
+     */
+    private $speciesFeatures;
+
+    public function __construct()
+    {
+        $this->speciesFeatures = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -87,6 +99,37 @@ class Species
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SpeciesFeature[]
+     */
+    public function getSpeciesFeatures(): Collection
+    {
+        return $this->speciesFeatures;
+    }
+
+    public function addSpeciesFeature(SpeciesFeature $speciesFeature): self
+    {
+        if (!$this->speciesFeatures->contains($speciesFeature)) {
+            $this->speciesFeatures[] = $speciesFeature;
+            $speciesFeature->setSpecies($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpeciesFeature(SpeciesFeature $speciesFeature): self
+    {
+        if ($this->speciesFeatures->contains($speciesFeature)) {
+            $this->speciesFeatures->removeElement($speciesFeature);
+            // set the owning side to null (unless already changed)
+            if ($speciesFeature->getSpecies() === $this) {
+                $speciesFeature->setSpecies(null);
+            }
+        }
 
         return $this;
     }

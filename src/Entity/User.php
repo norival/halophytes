@@ -66,10 +66,16 @@ class User implements UserInterface
      */
     private $species;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SpeciesFeature::class, mappedBy="user")
+     */
+    private $speciesFeatures;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
         $this->species = new ArrayCollection();
+        $this->speciesFeatures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -254,6 +260,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($species->getUser() === $this) {
                 $species->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SpeciesFeature[]
+     */
+    public function getSpeciesFeatures(): Collection
+    {
+        return $this->speciesFeatures;
+    }
+
+    public function addSpeciesFeature(SpeciesFeature $speciesFeature): self
+    {
+        if (!$this->speciesFeatures->contains($speciesFeature)) {
+            $this->speciesFeatures[] = $speciesFeature;
+            $speciesFeature->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpeciesFeature(SpeciesFeature $speciesFeature): self
+    {
+        if ($this->speciesFeatures->contains($speciesFeature)) {
+            $this->speciesFeatures->removeElement($speciesFeature);
+            // set the owning side to null (unless already changed)
+            if ($speciesFeature->getUser() === $this) {
+                $speciesFeature->setUser(null);
             }
         }
 
