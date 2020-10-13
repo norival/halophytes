@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <section class="homeSection">
+        <a class="blockLink" href="#">
+            <h2>Choisir son halophyte</h2>
+            <p>Find the best candidates</p>
+        </a>
+    </section>
+    <section class="homeSection">
+        <a class="blockLink" href="#">
+            <h2>Accéder aux données</h2>
+            <p>Regarder les données</p>
+        </a>
+    </section>
+    <section class="homeSection">
+        <a class="blockLink" href="#">
+            <h2>Faire une nouvelle entrée</h2>
+            <p>Ajouter les données</p>
+        </a>
+    </section>
+    <section class="homeSection">
+        <a class="blockLink" href="#">
+            <h2>Outils participatifs</h2>
+            <p>Blabla</p>
+        </a>
+    </section>
+    <section class="homeSection account">
+        <a class="blockLink" href="#">
+            <h2>Mon compte</h2>
+        </a>
+    </section>
+{% endblock %}
