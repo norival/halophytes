@@ -50,6 +50,16 @@ class Article
      */
     private $speciesFeatures;
 
+    /**
+     * @ORM\Column(type="string", length=60)
+     */
+    private $first_author_last_name;
+
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $year;
+
     public function __construct()
     {
         $this->speciesFeatures = new ArrayCollection();
@@ -147,6 +157,30 @@ class Article
                 $speciesFeature->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFirstAuthorLastName(): ?string
+    {
+        return $this->first_author_last_name;
+    }
+
+    public function setFirstAuthorLastName(string $first_author_last_name): self
+    {
+        $this->first_author_last_name = $first_author_last_name;
+
+        return $this;
+    }
+
+    public function getYear(): ?int
+    {
+        return $this->year;
+    }
+
+    public function setYear(int $year): self
+    {
+        $this->year = $year;
 
         return $this;
     }

@@ -37,7 +37,8 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
             characteristics of trees bearing Black Woodpecker cavities (n = 60)
             and control trees (n = 56) in two managed lowland
             broadleave-dominated forests in France. We hypothesized that:");
-
+        $article->setFirstAuthorLastName('Puverel');
+        $article->setYear(2019);
         $article->setUser($userUser);
         $article->setCreatedAt(\date_create());
 
@@ -59,6 +60,8 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
             Hence, Raman spectra of these solutions were acquired in a −30 to
             10 °C temperature range. This enabled us to build the experimental
             phase diagram of the urea–water binary system.");
+        $article->setFirstAuthorLastName('Durickovic');
+        $article->setYear(2013);
         $article->setUser($userUser);
         $article->setCreatedAt(\date_create());
 
