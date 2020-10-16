@@ -62,7 +62,6 @@ class SpeciesFeatureController extends AbstractController
     public function choice()
     {
         $form = $this->createForm(ChooseSpeciesType::class);
-        dump($form);
 
         return $this->render('species_feature/choose.html.twig', [
             'form' => $form->createView(),

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of species{% endblock %}
+
+{% block body %}
+<h1>List of halophytes species</h1>
+<ul>
+{% for sp in species %}
+    <li>
+        {{ sp }}
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
