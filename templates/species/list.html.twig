@@ -4,6 +4,13 @@
 
 {% block body %}
 <h1>List of halophytes species</h1>
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}</div>
+
 <ul>
 {% for sp in species %}
     <li>

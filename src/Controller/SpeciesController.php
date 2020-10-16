@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Species;
+use App\Form\SpeciesType;
 use App\Repository\SpeciesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SpeciesController extends AbstractController
@@ -29,6 +32,31 @@ class SpeciesController extends AbstractController
 
         return $this->render('species/list.html.twig', [
             'species' => $species,
+        ]);
+    }
+
+    /**
+     * @Route("/species/add", name="species_add")
+     */
+    public function add(Request $request)
+    {
+        $species = new Species();
+        $form = $this->createForm(SpeciesType::class, $species);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $species->setUser($this->getUser());
+            $species->setCreatedAt(\date_create());
+
+            $this->em->persist($species);
+            $this->em->flush();
+
+            $this->addFlash('success', 'New species added');
+            return $this->redirectToRoute('species_list');
+        }
+
+        return $this->render('species/add.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }

@@ -43,8 +43,11 @@ class SpeciesFeatureType extends AbstractType
             ->add('save', SubmitType::class, [
                 'label' => 'Create species feature'
             ])
-            ->add('new_species', SpeciesType::class, ['mapped' => false])
-            ->add('new_feature', FeatureType::class, ['mapped' => false])
+            ->add('new_species', SpeciesType::class, [
+                'mapped' => false,
+                'embed' => true,
+            ])
+            ->add('new_feature', FeatureType::class, ['mapped' => false,])
             ->add('new_article', ArticleType::class, ['mapped' => false])
         ;
 
