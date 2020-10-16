@@ -44,6 +44,17 @@ class Feature
      */
     private $speciesFeatures;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="features")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
     public function __construct()
     {
         $this->speciesFeatures = new ArrayCollection();
@@ -136,5 +147,29 @@ class Feature
     public function __toString()
     {
         return $this->getName() . ' (' . $this->getUnit() . ')';
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
     }
 }

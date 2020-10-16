@@ -94,6 +94,8 @@ class SpeciesFeatureController extends AbstractController
             if (!$speciesFeature->getFeature()) {
                 /** @var \App\Entity\Feature $feature */
                 $feature = $form->get('new_feature')->getData();
+                $feature->setUser($user);
+                $feature->setCreatedAt(\date_create());
                 $this->em->persist($feature);
                 $speciesFeature->setFeature($feature);
             }
