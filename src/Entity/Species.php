@@ -150,4 +150,13 @@ class Species
 
         return $this;
     }
+
+    public function __toString()
+    {
+        $variety = $this->getVariety() == '' ? '' : ' (' . $this->getVariety() . ')';
+
+        return $this->getGenus()
+            . ' ' . $this->getSpecies()
+            . $variety;
+    }
 }

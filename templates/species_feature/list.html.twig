@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SpeciesFeatureController!{% endblock %}
+
+{% block body %}
+    <table>
+        <thead>
+            <th>
+                Species
+            </th>
+            <th>
+                Feature
+            </th>
+            <th>
+                Value
+            </th>
+            <th>
+                Unit
+            </th>
+            <th>
+                Article
+            </th>
+        </thead>
+        <tbody>
+        {% for sf in sfs %}
+            <tr>
+                <td>
+                    {{ sf.species.genus }}
+                    {{ sf.species.species }}
+                    {% if sf.species.variety %}
+                    ({{ sf.species.variety }})
+                    {% endif %}
+                </td>
+                <td>
+                    {{ sf.feature.name }}
+                </td>
+                <td>
+                    {{ sf.value }}
+                </td>
+                <td>
+                    {{ sf.feature.unit }}
+                </td>
+                <td>
+                    <a href="{{ sf.article.url }}">{{ sf.article.title[:30] }}&#8230</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
