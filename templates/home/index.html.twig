@@ -55,7 +55,10 @@
         </ul>
     </section>
     <section class="homeSection">
-        <h2>Account</h2>
-        <a class="blockLink" href="#">Account</a>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a class="blockLink" href="{{ path('profile') }}">My profile</a>
+        {% else %}
+            <a class="blockLink" href="{{ path('app_login') }}">Sign in/Register</a>
+        {% endif %}
     </section>
 {% endblock %}
