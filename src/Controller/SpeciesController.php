@@ -20,7 +20,7 @@ class SpeciesController extends AbstractController
         EntityManagerInterface $em,
         SpeciesRepository $speciesRepo
     ) {
-        $this->em         = $em;
+        $this->em          = $em;
         $this->speciesRepo = $speciesRepo;
     }
 

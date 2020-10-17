@@ -1,25 +1,25 @@
-body {
-    min-width: 100vw;
-    min-height: 100vh;
-    margin: 0;
+// body {
+//     min-width: 100vw;
+//     min-height: 100vh;
+//     margin: 0;
 
-    display: flex;
-    flex-wrap: wrap;
-}
+//     display: flex;
+//     flex-wrap: wrap;
+// }
 
-.homeSection {
-    width: 50%;
+// .homeSection {
+//     width: 50%;
 
-    &.account {
-        position: absolute;
-    }
-}
-.blockLink {
-    display: block;
-    height: 100%;
-    border: 1px solid red;
+//     &.account {
+//         position: absolute;
+//     }
+// }
+// .blockLink {
+//     display: block;
+//     height: 100%;
+//     border: 1px solid red;
 
-    &:hover {
-        background-color: red;
-    }
-}
+//     &:hover {
+//         background-color: red;
+//     }
+// }

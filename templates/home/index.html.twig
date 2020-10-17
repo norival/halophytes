@@ -8,32 +8,54 @@
 
 {% block body %}
     <section class="homeSection">
-        <a class="blockLink" href="#">
-            <h2>Choisir son halophyte</h2>
-            <p>Find the best candidates</p>
-        </a>
+        <h2>Choose your halophyte</h2>
+        <ul>
+            <li>
+                <a class="blockLink" href="#">Find the best candidates</a>
+            </li>
+        </ul>
     </section>
     <section class="homeSection">
-        <a class="blockLink" href="#">
-            <h2>Accéder aux données</h2>
-            <p>Regarder les données</p>
-        </a>
+        <h2>Access data</h2>
+        <ul>
+            <li>
+                <a class="blockLink" href="{{ path('sf_list') }}">Species x features data</a>
+            </li>
+            <li>
+                <a class="blockLink" href="{{ path('species_list') }}">Species data</a>
+            </li>
+            <li>
+                <a class="blockLink" href="{{ path('feature_list') }}">Features data</a>
+            </li>
+        </ul>
     </section>
     <section class="homeSection">
-        <a class="blockLink" href="#">
-            <h2>Faire une nouvelle entrée</h2>
-            <p>Ajouter les données</p>
-        </a>
+        <h2>Add new entry</h2>
+        <ul>
+            <li>
+                <a class="blockLink" href="{{ path('sf_add') }}">Add new species x feature</a>
+            </li>
+            <li>
+                <a class="blockLink" href="{{ path('species_add') }}">Add new species</a>
+            </li>
+            <li>
+                <a class="blockLink" href="{{ path('feature_add') }}">Add new feature</a>
+            </li>
+        </ul>
     </section>
     <section class="homeSection">
-        <a class="blockLink" href="#">
-            <h2>Outils participatifs</h2>
-            <p>Blabla</p>
-        </a>
+        <h2>Collaborative tools</h2>
+        <ul>
+            <li>
+                <a class="blockLink" href="#">Validate data</a>
+            </li>
+            <li>
+                <a class="blockLink" href="#">...</a>
+            </li>
+        </ul>
     </section>
-    <section class="homeSection account">
-        <a class="blockLink" href="#">
-            <h2>Mon compte</h2>
-        </a>
+    <section class="homeSection">
+        <h2>Account</h2>
+        <a class="blockLink" href="#">Account</a>
     </section>
 {% endblock %}
