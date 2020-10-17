@@ -25,6 +25,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('home', './assets/home.js')
+    .addEntry('sf_form', './assets/sf_form.js')
     //.addEntry('page1', './assets/page1.js')
     //.addEntry('page2', './assets/page2.js')
 
@@ -52,6 +53,23 @@ Encore
     .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
         config.corejs = 3;
+    })
+
+    .configureBabel(function(babelConfig) {
+        // add additional presets
+        // babelConfig.presets.push('@babel/preset-flow');
+
+        // no plugins are added by default, but you can add some
+        babelConfig.plugins.push('@babel/plugin-proposal-class-properties');
+    }, {
+        // node_modules is not processed through Babel by default
+        // but you can whitelist specific modules to process
+        // include_node_modules: ['foundation-sites'],
+
+        // or completely control the exclude rule (note that you
+        // can't use both "include_node_modules" and "exclude" at
+        // the same time)
+        // exclude: /bower_components/
     })
 
     // enables Sass/SCSS support

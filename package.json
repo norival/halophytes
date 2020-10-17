@@ -1,5 +1,6 @@
 {
     "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.12.1",
         "@symfony/webpack-encore": "^0.30.0",
         "bootstrap": "^4.5.3",
         "core-js": "^3.0.0",

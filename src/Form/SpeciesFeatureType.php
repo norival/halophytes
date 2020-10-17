@@ -33,7 +33,9 @@ class SpeciesFeatureType extends AbstractType
                 'empty_data'  => 'new',
                 'required'    => false,
             ])
-            ->add('value', TextType::class)
+            ->add('value', TextType::class, [
+                'label' => 'Feature value',
+            ])
             ->add('article', EntityType::class, [
                 'class'        => Article::class,
                 'placeholder'  => 'New article',
