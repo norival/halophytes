@@ -17,19 +17,14 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'required' => !$options['embed'],
             ])
             ->add('url', UrlType::class, [
-                'required' => !$options['embed'],
             ])
             ->add('abstract', TextareaType::class, [
-                'required' => !$options['embed'],
             ])
             ->add('first_author_last_name', TextType::class, [
-                'required' => !$options['embed'],
             ])
             ->add('year', TextType::class, [
-                'required' => !$options['embed'],
             ]);
 
         if (!$options['embed']) {

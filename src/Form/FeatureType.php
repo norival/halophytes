@@ -15,16 +15,12 @@ class FeatureType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'required' => !$options['embed'],
             ])
             ->add('data_type', TextType::class, [
-                'required' => !$options['embed'],
             ])
             ->add('unit', TextType::class, [
-                'required' => !$options['embed'],
             ])
             ->add('description', TextType::class, [
-                'required' => !$options['embed'],
             ]);
 
         if (!$options['embed']) {
