@@ -25,11 +25,6 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         /** @var \App\Entity\Feature $feature4 */
         $feature4 = $this->getReference(FeatureFixtures::FEATURE_4_REFERENCE);
 
-        /** @var \App\Entity\State $stateAccepted */
-        $stateAccepted = $this->getReference(StateFixtures::STATE_ACCEPTED);
-        /** @var \App\Entity\State $stateReview */
-        $stateReview = $this->getReference(StateFixtures::STATE_REVIEW);
-
         /** @var \App\Entity\Article $article1 */
         $article1 = $this->getReference(ArticleFixtures::ARTICLE_1_REFERENCE);
         /** @var \App\Entity\Article $article2 */
@@ -43,7 +38,7 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('12');
         $speciesFeature->setSpecies($species1);
         $speciesFeature->setFeature($feature1);
-        $speciesFeature->setState($stateAccepted);
+        $speciesFeature->setState(SpeciesFeature::STATE_PUBLISHED);
         $speciesFeature->setArticle($article1);
         $speciesFeature->setUser($user);
         $speciesFeature->setCreatedAt(\date_create());
@@ -55,7 +50,7 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('24');
         $speciesFeature->setSpecies($species2);
         $speciesFeature->setFeature($feature1);
-        $speciesFeature->setState($stateAccepted);
+        $speciesFeature->setState(SpeciesFeature::STATE_PUBLISHED);
         $speciesFeature->setArticle($article1);
         $speciesFeature->setUser($user);
         $speciesFeature->setCreatedAt(\date_create());
@@ -67,7 +62,7 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('24');
         $speciesFeature->setSpecies($species1);
         $speciesFeature->setFeature($feature1);
-        $speciesFeature->setState($stateReview);
+        $speciesFeature->setState(SpeciesFeature::STATE_PUBLISHED);
         $speciesFeature->setArticle($article2);
         $speciesFeature->setUser($user);
         $speciesFeature->setCreatedAt(\date_create());
@@ -79,7 +74,7 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('true');
         $speciesFeature->setSpecies($species1);
         $speciesFeature->setFeature($feature3);
-        $speciesFeature->setState($stateAccepted);
+        $speciesFeature->setState(SpeciesFeature::STATE_PUBLISHED);
         $speciesFeature->setArticle($article1);
         $speciesFeature->setUser($user);
         $speciesFeature->setCreatedAt(\date_create());
@@ -91,7 +86,7 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('false');
         $speciesFeature->setSpecies($species1);
         $speciesFeature->setFeature($feature4);
-        $speciesFeature->setState($stateAccepted);
+        $speciesFeature->setState(SpeciesFeature::STATE_PUBLISHED);
         $speciesFeature->setArticle($article1);
         $speciesFeature->setUser($user);
         $speciesFeature->setCreatedAt(\date_create());
@@ -103,7 +98,43 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('12');
         $speciesFeature->setSpecies($species2);
         $speciesFeature->setFeature($feature2);
-        $speciesFeature->setState($stateAccepted);
+        $speciesFeature->setState(SpeciesFeature::STATE_PUBLISHED);
+        $speciesFeature->setArticle($article2);
+        $speciesFeature->setUser($user);
+        $speciesFeature->setCreatedAt(\date_create());
+
+        $manager->persist($speciesFeature);
+
+        // Dummy speciesFeature 7 **********************************************
+        $speciesFeature = new SpeciesFeature();
+        $speciesFeature->setValue('16');
+        $speciesFeature->setSpecies($species2);
+        $speciesFeature->setFeature($feature3);
+        $speciesFeature->setState(SpeciesFeature::STATE_NEEDS_REVIEW);
+        $speciesFeature->setArticle($article1);
+        $speciesFeature->setUser($user);
+        $speciesFeature->setCreatedAt(\date_create());
+
+        $manager->persist($speciesFeature);
+
+        // Dummy speciesFeature 8 **********************************************
+        $speciesFeature = new SpeciesFeature();
+        $speciesFeature->setValue('true');
+        $speciesFeature->setSpecies($species1);
+        $speciesFeature->setFeature($feature4);
+        $speciesFeature->setState(SpeciesFeature::STATE_NEEDS_REVIEW);
+        $speciesFeature->setArticle($article1);
+        $speciesFeature->setUser($user);
+        $speciesFeature->setCreatedAt(\date_create());
+
+        $manager->persist($speciesFeature);
+
+        // Dummy speciesFeature 9 **********************************************
+        $speciesFeature = new SpeciesFeature();
+        $speciesFeature->setValue('false');
+        $speciesFeature->setSpecies($species1);
+        $speciesFeature->setFeature($feature4);
+        $speciesFeature->setState(SpeciesFeature::STATE_REJECTED);
         $speciesFeature->setArticle($article2);
         $speciesFeature->setUser($user);
         $speciesFeature->setCreatedAt(\date_create());
@@ -119,7 +150,6 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
             ArticleFixtures::class,
             FeatureFixtures::class,
             SpeciesFixtures::class,
-            StateFixtures::class,
             UserFixtures::class,
         );
     }

@@ -113,8 +113,8 @@ class SpeciesFeatureController extends AbstractController
             $speciesFeature->setCreatedAt(\date_create());
             $speciesFeature->setUser($user);
 
-            $state = $this->em->getRepository(State::class)->findOneByName('Needs review');
-            $speciesFeature->setState($state);
+            $speciesFeature->setState(SpeciesFeature::STATE_NEEDS_REVIEW);
+
             $this->em->persist($speciesFeature);
 
             $this->em->flush();

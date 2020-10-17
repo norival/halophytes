@@ -10,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SpeciesFeature
 {
+    const STATE_NEEDS_REVIEW = 0;
+    const STATE_PUBLISHED    = 1;
+    const STATE_REJECTED     = 2;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -35,8 +39,7 @@ class SpeciesFeature
     private $feature;
 
     /**
-     * @ORM\ManyToOne(targetEntity=State::class, inversedBy="speciesFeatures")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="smallint")
      */
     private $state;
 
@@ -103,12 +106,12 @@ class SpeciesFeature
         return $this;
     }
 
-    public function getState(): ?State
+    public function getState(): ?int
     {
         return $this->state;
     }
 
-    public function setState(?State $state): self
+    public function setState(?int $state): self
     {
         $this->state = $state;
 
