@@ -28,6 +28,7 @@ class UserFixtures extends Fixture
         $user->setFirstname('Firstadmin');
         $user->setLastname('Lastadmin');
         $user->setOrcid('0000-0002-9882-3253');
+        $user->setRoles(['ROLE_ADMIN', 'ROLE_CONTRIBUTOR']);
         $user->setCreatedAt(\date_create());
 
         $user->setPassword($this->passwordEncoder->encodePassword(
@@ -44,6 +45,7 @@ class UserFixtures extends Fixture
         $user->setFirstname('Firstuser');
         $user->setLastname('Lastuser');
         $user->setOrcid('0000-0002-9882-3253');
+        $user->setRoles(['ROLE_CONTRIBUTOR']);
         $user->setCreatedAt(\date_create());
 
         $user->setPassword($this->passwordEncoder->encodePassword(

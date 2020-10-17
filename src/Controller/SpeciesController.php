@@ -6,6 +6,7 @@ use App\Entity\Species;
 use App\Form\SpeciesType;
 use App\Repository\SpeciesRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,6 +38,7 @@ class SpeciesController extends AbstractController
 
     /**
      * @Route("/species/add", name="species_add")
+     * @IsGranted("ROLE_CONTRIBUTOR")
      */
     public function add(Request $request)
     {

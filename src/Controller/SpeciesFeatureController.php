@@ -9,6 +9,7 @@ use App\Form\SpeciesFeatureType;
 use App\Repository\FeatureRepository;
 use App\Repository\SpeciesFeatureRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -71,6 +72,7 @@ class SpeciesFeatureController extends AbstractController
 
     /**
      * @Route("/speciesFeature/add", name="sf_add")
+     * @IsGranted("ROLE_CONTRIBUTOR")
      */
     public function add(Request $request)
     {
@@ -127,6 +129,7 @@ class SpeciesFeatureController extends AbstractController
 
     /**
      * @Route("/speciesFeature/add_success", name="sf_add_success")
+     * @IsGranted("ROLE_CONTRIBUTOR")
      */
     public function addSuccess()
     {

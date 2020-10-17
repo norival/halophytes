@@ -6,6 +6,7 @@ use App\Repository\SpeciesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SpeciesRepository::class)
@@ -22,6 +23,7 @@ class Species
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="species")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Type("App\Entity\User")
      */
     private $user;
 
@@ -37,11 +39,15 @@ class Species
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $genus;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $species;
 
