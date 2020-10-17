@@ -45,10 +45,16 @@ class SpeciesFeatureType extends AbstractType
             ])
             ->add('new_species', SpeciesType::class, [
                 'mapped' => false,
-                'embed' => true,
+                'embed'  => true,
             ])
-            ->add('new_feature', FeatureType::class, ['mapped' => false,])
-            ->add('new_article', ArticleType::class, ['mapped' => false])
+            ->add('new_feature', FeatureType::class, [
+                'mapped' => false,
+                'embed'  => true,
+            ])
+            ->add('new_article', ArticleType::class, [
+                'mapped' => false,
+                'embed'  => true,
+            ])
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {

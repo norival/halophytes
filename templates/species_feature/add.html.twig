@@ -3,5 +3,27 @@
 {% block title %}Hello SpeciesFeatureController!{% endblock %}
 
 {% block body %}
-    {{ form(form) }}
+    {{ form_start(form, {'method': 'POST'}) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.species) }}
+        <fieldset id="new-species" class="form-group">
+            {{ form_label(form.new_species) }}
+            {{ form_widget(form.new_species) }}
+        </fieldset>
+
+        {{ form_row(form.feature) }}
+        <fieldset id="new-feature" class="form-group">
+            {{ form_label(form.new_feature) }}
+            {{ form_widget(form.new_feature) }}
+        </fieldset>
+
+        {{ form_row(form.value) }}
+
+        {{ form_row(form.article) }}
+        <fieldset id="new-article" class="form-group">
+            {{ form_label(form.new_article) }}
+            {{ form_widget(form.new_article) }}
+        </fieldset>
+    {{ form_end(form) }}
 {% endblock %}
