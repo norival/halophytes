@@ -29,10 +29,10 @@ class FeatureController extends AbstractController
      */
     public function list()
     {
-        $feature = $this->featureRepo->findAll();
+        $features = $this->featureRepo->findAll();
 
         return $this->render('feature/list.html.twig', [
-            'feature' => $feature,
+            'features' => $features,
         ]);
     }
 
@@ -46,6 +46,7 @@ class FeatureController extends AbstractController
         $form = $this->createForm(FeatureType::class, $feature);
 
         $form->handleRequest($request);
+        dump($form->get('data_type')->getData());
         if ($form->isSubmitted() && $form->isValid()) {
             $feature->setUser($this->getUser());
             $feature->setCreatedAt(\date_create());

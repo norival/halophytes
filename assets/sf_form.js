@@ -1,5 +1,10 @@
 import DynamicElement from './js/classes/DynamicElement';
 
+const DATA_TYPES = {
+    'Qualitative data':  0,
+    'Quantitative data': 1,
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const dynamicSpeciesElement = new DynamicElement(
         document.getElementById('new-species'),

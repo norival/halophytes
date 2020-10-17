@@ -6,12 +6,18 @@ use App\Repository\FeatureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=FeatureRepository::class)
  */
 class Feature
 {
+    const DATA_TYPES = [
+        'Qualitative data'  => 0,
+        'Quantitative data' => 1,
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,11 +27,13 @@ class Feature
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=60)
+     * @Assert\NotBlank
      */
     private $data_type;
 
@@ -36,6 +44,7 @@ class Feature
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Type("string")
      */
     private $description;
 
@@ -47,6 +56,7 @@ class Feature
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="features")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Type("App\Entity\User")
      */
     private $user;
 
