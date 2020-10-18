@@ -66,7 +66,7 @@ class SecurityController extends AbstractController
                 // chekc if email is already used
                 $form->addError(new FormError("The email $email is already used."));
 
-                return $this->render('user/registration.html.twig', [
+                return $this->render('security/registration.html.twig', [
                     'form' => $form->createView(),
                 ]);
             }
@@ -92,7 +92,7 @@ class SecurityController extends AbstractController
             );
         }
 
-        return $this->render('user/registration.html.twig', [
+        return $this->render('security/registration.html.twig', [
             'form' => $form->createView(),
         ]);
     }
