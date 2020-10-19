@@ -20,8 +20,6 @@ class ArticleType extends AbstractType
             ])
             ->add('url', UrlType::class, [
             ])
-            ->add('abstract', TextareaType::class, [
-            ])
             ->add('first_author_last_name', TextType::class, [
             ])
             ->add('year', TextType::class, [

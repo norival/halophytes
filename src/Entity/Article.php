@@ -33,12 +33,6 @@ class Article
     private $url;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     * @Assert\Type("string")
-     */
-    private $abstract;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -94,18 +88,6 @@ class Article
     public function setUrl(string $url): self
     {
         $this->url = $url;
-
-        return $this;
-    }
-
-    public function getAbstract(): ?string
-    {
-        return $this->abstract;
-    }
-
-    public function setAbstract(?string $abstract): self
-    {
-        $this->abstract = $abstract;
 
         return $this;
     }
