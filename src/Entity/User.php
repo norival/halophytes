@@ -333,4 +333,22 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function __toString()
+    {
+        if ($this->getFirstname() && $this->getLastname()) {
+            return $this->getFirstname() . ' ' . $this->getLastname();
+        }
+
+        return $this->getEmail();
+    }
+
+    public function getFullName()
+    {
+        if ($this->getFirstname() && $this->getLastname()) {
+            return $this->getFirstname() . ' ' . $this->getLastname();
+        }
+
+        return '';
+    }
 }
