@@ -171,8 +171,11 @@ class Article
         return $this;
     }
 
-    public function __toString()
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
     {
-        return $this->getFirstAuthorLastName() . ' (' . $this->getYear() . ')';
+        $this->created_at = new \DateTime();
     }
 }
