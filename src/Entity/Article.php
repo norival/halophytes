@@ -3,13 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use App\Service\CrossrefHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Article
 {
@@ -33,6 +36,16 @@ class Article
     private $url;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $doi;
+
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $meta_data = [];
+
+    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -47,16 +60,6 @@ class Article
      * @ORM\OneToMany(targetEntity=SpeciesFeature::class, mappedBy="article")
      */
     private $speciesFeatures;
-
-    /**
-     * @ORM\Column(type="string", length=60)
-     */
-    private $first_author_last_name;
-
-    /**
-     * @ORM\Column(type="smallint")
-     */
-    private $year;
 
     public function __construct()
     {
@@ -147,29 +150,56 @@ class Article
         return $this;
     }
 
-    public function getFirstAuthorLastName(): ?string
+    public function getMetaData(): ?array
     {
-        return $this->first_author_last_name;
+        return $this->meta_data;
     }
 
-    public function setFirstAuthorLastName(string $first_author_last_name): self
+    public function setMetaData(?array $meta_data): self
     {
-        $this->first_author_last_name = $first_author_last_name;
+        $this->meta_data = $meta_data;
 
         return $this;
     }
 
-    public function getYear(): ?int
+    public function getDoi(): ?string
     {
-        return $this->year;
+        return $this->doi;
     }
 
-    public function setYear(int $year): self
+    public function setDoi(?string $doi): self
     {
-        $this->year = $year;
+        $this->doi = $doi;
 
         return $this;
     }
+
+    public function getAuthors()
+    {
+        if (empty($this->meta_data)) {
+            return ;
+        }
+
+        return $this->meta_data['message']['author'];
+    }
+
+    public function getYearPublished()
+    {
+        if (empty($this->meta_data)) {
+            return ;
+        }
+
+        return $this->meta_data['message']['author'];
+    }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+    /**************************************************************************
+     * Lifecylcle doctrine events
+     **************************************************************************/
 
     /**
      * @ORM\PrePersist
@@ -177,5 +207,30 @@ class Article
     public function setCreatedAtValue()
     {
         $this->created_at = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function parseMetaData(LifecycleEventArgs $args)
+    {
+        $crossrefHelper = new CrossrefHelper();
+
+        // parse DOI
+        $this->doi = $crossrefHelper->parseUrl($this->url);
+
+        if (!$this->doi) {
+            $this->meta_data = [];
+
+            return ;
+        }
+
+        $this->meta_data = $crossrefHelper->query($this->doi);
+
+        /* TODO
+         * If no DOI is found
+         *      -> Crawl the web page to find a DOI?
+         *      -> Leave meta data blank?
+         */
     }
 }

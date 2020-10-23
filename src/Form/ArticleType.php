@@ -20,10 +20,7 @@ class ArticleType extends AbstractType
             ])
             ->add('url', UrlType::class, [
             ])
-            ->add('first_author_last_name', TextType::class, [
-            ])
-            ->add('year', TextType::class, [
-            ]);
+        ;
 
         if (!$options['embed']) {
             $builder->add('save', SubmitType::class, [

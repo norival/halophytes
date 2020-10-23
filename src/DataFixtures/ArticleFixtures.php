@@ -24,10 +24,7 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
         $article->setTitle('This is my spot: What are the characteristics of
             the trees excavated by the Black Woodpecker? A case study in two
             managed French forests');
-        $article->setFirstAuthorLastName('Puverel');
-        $article->setYear(2019);
         $article->setUser($userUser);
-        $article->setCreatedAt(\date_create());
 
         $manager->persist($article);
         $this->addReference(self::ARTICLE_1_REFERENCE, $article);
@@ -39,10 +36,7 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
         $article->setTitle('Spectroscopic Characterization of Urea Aqueous
             Solutions: Experimental Phase Diagram of the Urea–Water Binary
             System');
-        $article->setFirstAuthorLastName('Durickovic');
-        $article->setYear(2013);
         $article->setUser($userUser);
-        $article->setCreatedAt(\date_create());
 
         $manager->persist($article);
         $this->addReference(self::ARTICLE_2_REFERENCE, $article);
