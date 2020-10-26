@@ -119,7 +119,13 @@ class SpeciesFeatureController extends AbstractController
 
             $this->em->flush();
 
-            return $this->redirectToRoute('sf_add_success');
+            /** @var \Symfony\Component\Form\SubmitButton $button */
+            $button = $form->get('save_continue');
+            $redirect = $button->isClicked()
+                ? 'sf_add'
+                : 'sf_list';
+
+            return $this->redirectToRoute($redirect);
         }
 
         return $this->render('species_feature/add.html.twig', [
