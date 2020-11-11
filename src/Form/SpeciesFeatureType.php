@@ -8,6 +8,8 @@ use App\Entity\Species;
 use App\Entity\SpeciesFeature;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -36,6 +38,18 @@ class SpeciesFeatureType extends AbstractType
             ->add('value', TextType::class, [
                 'label' => 'Feature value',
             ])
+            ->add('range_value', CheckboxType::class, [
+                'label'    => 'Specify range?',
+                'required' => false,
+            ])
+            ->add('value_min', NumberType::class, [
+                'label'    => 'Feature min value',
+                /* 'disabled' => true, */
+            ])
+            ->add('value_max', NumberType::class, [
+                'label'    => 'Feature max value',
+                /* 'disabled' => true, */
+            ])
             ->add('article', EntityType::class, [
                 'class'        => Article::class,
                 'placeholder'  => 'New article',
@@ -52,16 +66,19 @@ class SpeciesFeatureType extends AbstractType
                 'mapped'   => false,
                 'embed'    => true,
                 'required' => false,
+                /* 'disabled' => true, */
             ])
             ->add('new_feature', FeatureType::class, [
                 'mapped'   => false,
                 'embed'    => true,
                 'required' => false,
+                /* 'disabled' => true, */
             ])
             ->add('new_article', ArticleType::class, [
                 'mapped'   => false,
                 'embed'    => true,
                 'required' => false,
+                /* 'disabled' => true, */
             ])
         ;
 

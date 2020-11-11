@@ -18,7 +18,15 @@
             {{ form_widget(form.new_feature) }}
         </fieldset>
 
-        {{ form_row(form.value) }}
+        <fieldset id="feature-value" class="form-group">
+            {{ form_label(form.value) }}
+            {{ form_widget(form.value) }}
+        </fieldset>
+        <fieldset id="range-values" class="form-group">
+            {{ form_row(form.value_min) }}
+            {{ form_row(form.value_max) }}
+        </fieldset>
+        {{ form_row(form.range_value) }}
 
         {{ form_row(form.article) }}
         <fieldset id="new-article" class="form-group">

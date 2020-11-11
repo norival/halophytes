@@ -81,6 +81,7 @@ class SpeciesFeatureController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var \App\Entity\User $user */
             $user = $this->getUser();
 
             if (!$speciesFeature->getArticle()) {

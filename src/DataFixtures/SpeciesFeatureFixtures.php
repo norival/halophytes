@@ -38,6 +38,7 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('12');
         $speciesFeature->setSpecies($species1);
         $speciesFeature->setFeature($feature1);
+        $speciesFeature->setRangeValue(false);
         $speciesFeature->setState(SpeciesFeature::STATE_PUBLISHED);
         $speciesFeature->setArticle($article1);
         $speciesFeature->setUser($user);
@@ -50,6 +51,7 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('24');
         $speciesFeature->setSpecies($species2);
         $speciesFeature->setFeature($feature1);
+        $speciesFeature->setRangeValue(false);
         $speciesFeature->setState(SpeciesFeature::STATE_PUBLISHED);
         $speciesFeature->setArticle($article1);
         $speciesFeature->setUser($user);
@@ -62,6 +64,7 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('24');
         $speciesFeature->setSpecies($species1);
         $speciesFeature->setFeature($feature1);
+        $speciesFeature->setRangeValue(false);
         $speciesFeature->setState(SpeciesFeature::STATE_PUBLISHED);
         $speciesFeature->setArticle($article2);
         $speciesFeature->setUser($user);
@@ -74,6 +77,7 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('true');
         $speciesFeature->setSpecies($species1);
         $speciesFeature->setFeature($feature3);
+        $speciesFeature->setRangeValue(false);
         $speciesFeature->setState(SpeciesFeature::STATE_PUBLISHED);
         $speciesFeature->setArticle($article1);
         $speciesFeature->setUser($user);
@@ -86,6 +90,7 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('false');
         $speciesFeature->setSpecies($species1);
         $speciesFeature->setFeature($feature4);
+        $speciesFeature->setRangeValue(false);
         $speciesFeature->setState(SpeciesFeature::STATE_PUBLISHED);
         $speciesFeature->setArticle($article1);
         $speciesFeature->setUser($user);
@@ -95,9 +100,11 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
 
         // Dummy speciesFeature 6 **********************************************
         $speciesFeature = new SpeciesFeature();
-        $speciesFeature->setValue('12');
+        $speciesFeature->setValueMin('12');
+        $speciesFeature->setValueMax('18');
         $speciesFeature->setSpecies($species2);
         $speciesFeature->setFeature($feature2);
+        $speciesFeature->setRangeValue(true);
         $speciesFeature->setState(SpeciesFeature::STATE_PUBLISHED);
         $speciesFeature->setArticle($article2);
         $speciesFeature->setUser($user);
@@ -107,9 +114,11 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
 
         // Dummy speciesFeature 7 **********************************************
         $speciesFeature = new SpeciesFeature();
-        $speciesFeature->setValue('16');
+        $speciesFeature->setValueMin('16');
+        $speciesFeature->setValueMax('28');
         $speciesFeature->setSpecies($species2);
         $speciesFeature->setFeature($feature3);
+        $speciesFeature->setRangeValue(true);
         $speciesFeature->setState(SpeciesFeature::STATE_NEEDS_REVIEW);
         $speciesFeature->setArticle($article1);
         $speciesFeature->setUser($user);
@@ -122,6 +131,7 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('true');
         $speciesFeature->setSpecies($species1);
         $speciesFeature->setFeature($feature4);
+        $speciesFeature->setRangeValue(false);
         $speciesFeature->setState(SpeciesFeature::STATE_NEEDS_REVIEW);
         $speciesFeature->setArticle($article1);
         $speciesFeature->setUser($user);
@@ -134,6 +144,7 @@ class SpeciesFeatureFixtures extends Fixture implements DependentFixtureInterfac
         $speciesFeature->setValue('false');
         $speciesFeature->setSpecies($species1);
         $speciesFeature->setFeature($feature4);
+        $speciesFeature->setRangeValue(false);
         $speciesFeature->setState(SpeciesFeature::STATE_REJECTED);
         $speciesFeature->setArticle($article2);
         $speciesFeature->setUser($user);

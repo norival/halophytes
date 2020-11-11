@@ -22,7 +22,7 @@ class SpeciesFeature
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $value;
 
@@ -65,6 +65,21 @@ class SpeciesFeature
      */
     private $updated_at;
 
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=3, nullable=true)
+     */
+    private $value_min;
+
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=3, nullable=true)
+     */
+    private $value_max;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $range_value;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,7 +90,7 @@ class SpeciesFeature
         return $this->value;
     }
 
-    public function setValue(string $value): self
+    public function setValue(?string $value): self
     {
         $this->value = $value;
 
@@ -162,6 +177,42 @@ class SpeciesFeature
     public function setUpdatedAt(?\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getValueMin(): ?string
+    {
+        return $this->value_min;
+    }
+
+    public function setValueMin(?string $value_min): self
+    {
+        $this->value_min = $value_min;
+
+        return $this;
+    }
+
+    public function getValueMax(): ?string
+    {
+        return $this->value_max;
+    }
+
+    public function setValueMax(?string $value_max): self
+    {
+        $this->value_max = $value_max;
+
+        return $this;
+    }
+
+    public function getRangeValue(): ?bool
+    {
+        return $this->range_value;
+    }
+
+    public function setRangeValue(bool $range_value): self
+    {
+        $this->range_value = $range_value;
 
         return $this;
     }
