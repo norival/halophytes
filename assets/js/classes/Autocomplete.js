@@ -75,7 +75,7 @@ export default class Autocomplete {
 
         const response = fetch(url)
             .then(response => response.json())
-            .then(data => this._onSearchDataReceived(data.features));
+            .then(data => this._onSearchDataReceived(data.results));
     }
 
     /**

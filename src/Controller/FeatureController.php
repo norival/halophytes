@@ -73,7 +73,7 @@ class FeatureController extends AbstractController
         $features = $this->featureRepo->findByName($request->get('q'));
 
         return $this->json([
-            'features' => $this->featureRepo->findByName($request->get('q')),
+            'results' => $this->featureRepo->findByName($request->get('q')),
         ], 200, [], ['groups' => 'search']);
     }
 }
