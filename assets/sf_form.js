@@ -7,7 +7,14 @@ const DATA_TYPES = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    const searchAutocomplete = new Autocomplete(
+    const speciesAutocomplete = new Autocomplete(
+        document.getElementById('species_feature_search_species'),
+        document.getElementById('search-species-results'),
+        document.getElementById('species_feature_species'),
+        '/species/search'
+    );
+
+    const featureAutocomplete = new Autocomplete(
         document.getElementById('species_feature_search_feature'),
         document.getElementById('search-feature-results'),
         document.getElementById('species_feature_feature'),

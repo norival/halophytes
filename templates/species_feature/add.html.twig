@@ -6,7 +6,14 @@
     {{ form_start(form, {'method': 'POST'}) }}
         {{ form_errors(form) }}
 
-        {{ form_row(form.species) }}
+        <div class="searchBoxWrapper">
+            {{ form_widget(form.species) }}
+            <div class="searchWidget">
+                {{ form_label(form.search_species) }}
+                {{ form_widget(form.search_species) }}
+                <ul class="searchResults" id="search-species-results"></ul>
+            </div>
+        </div>
         <fieldset id="new-species" class="form-group">
             {{ form_label(form.new_species) }}
             {{ form_widget(form.new_species) }}

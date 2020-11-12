@@ -25,16 +25,22 @@ class SpeciesFeatureType extends AbstractType
         /* dump($options['data']); */
         $builder
             ->add('species', EntityType::class, [
-                'class'       => Species::class,
-                'placeholder' => 'New species',
-                'empty_data'  => 'new',
-                'required'    => false,
+                'class'    => Species::class,
+                'required' => false,
+                'attr'     => [
+                    'hidden' => true,
+                ]
+            ])
+            ->add('search_species', SearchType::class, [
+                'mapped'   => false,
+                'label'    => 'Species',
+                'required' => false,
             ])
             ->add('feature', EntityType::class, [
                 'class'    => Feature::class,
                 'required' => false,
                 'attr'     => [
-                    /* 'hidden' => true, */
+                    'hidden' => true,
                 ]
             ])
             ->add('search_feature', SearchType::class, [

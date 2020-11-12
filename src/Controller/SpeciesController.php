@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class SpeciesController extends AbstractController
 {
@@ -60,5 +61,17 @@ class SpeciesController extends AbstractController
         return $this->render('species/add.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/species/search", name="species_search_api")
+     */
+    public function ajaxSearch(Request $request, SerializerInterface $serializer)
+    {
+        $species = $this->speciesRepo->findByName($request->get('q'));
+
+        return $this->json([
+            'results' => $species,
+        ], 200);
     }
 }

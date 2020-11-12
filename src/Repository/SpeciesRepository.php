@@ -19,6 +19,23 @@ class SpeciesRepository extends ServiceEntityRepository
         parent::__construct($registry, Species::class);
     }
 
+    /**
+    * @return Species[] Returns an array of Species objects
+    */
+    public function findByName($value)
+    {
+        return $this->createQueryBuilder('s')
+                    ->select('CONCAT(s.genus, \' \', s.species, \' (\', COALESCE(s.variety, \'\'), \')\') AS name')
+                    ->addSelect('s.id')
+                    ->andWhere('CONCAT(s.genus, \' \', s.species, \' (\', COALESCE(s.variety, \'\'), \')\') LIKE :val ')
+                    ->setParameter('val', '%' . $value . '%')
+                    ->orderBy('name', 'ASC')
+                    ->setMaxResults(10)
+                    ->getQuery()
+                    ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Species[] Returns an array of Species objects
     //  */
