@@ -44,7 +44,7 @@ export default class Autocomplete {
      * @returns {undefined}
      */
     _onBlurSearchBox = (event) => {
-        this._hide();
+        window.setTimeout(() => this._hide(), 250);
     }
 
     /**
