@@ -131,10 +131,8 @@ export default class Autocomplete {
         let currentEntry = this.searchResults.querySelector('.selectedEntry a');
 
         if (currentEntry) {
-            this.searchBox.value  = currentEntry.innerText;
-            this.valueField.value = currentEntry.dataset.resultId;
-
-            this._hide();
+            const event = new CustomEvent('click', { bubbles: true });
+            currentEntry.dispatchEvent(event);
 
             return ;
         }
@@ -142,10 +140,8 @@ export default class Autocomplete {
         const allEntries = this.searchResults.querySelectorAll('li a');
 
         if (allEntries.length === 1) {
-            this.searchBox.value  = allEntries[0].innerText;
-            this.valueField.value = allEntries[0].dataset.resultId;
-
-            this._hide();
+            const event = new CustomEvent('click', { bubbles: true });
+            allEntries[0].dispatchEvent(event);
 
             return ;
         }

@@ -80,7 +80,7 @@ class SpeciesFeatureType extends AbstractType
             ])
             ->add('search_feature', SearchType::class, [
                 'mapped'   => false,
-                'label' => 'Feature',
+                'label'    => 'Feature',
                 'required' => false,
             ])
         ;
