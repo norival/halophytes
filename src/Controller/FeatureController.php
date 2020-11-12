@@ -8,13 +8,15 @@ use App\Repository\FeatureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class FeatureController extends AbstractController
 {
-    private $em;
-    private $featureRepo;
+    private EntityManagerInterface $em;
+    private FeatureRepository $featureRepo;
 
     public function __construct(
         EntityManagerInterface $em,
@@ -46,7 +48,7 @@ class FeatureController extends AbstractController
         $form = $this->createForm(FeatureType::class, $feature);
 
         $form->handleRequest($request);
-        dump($form->get('data_type')->getData());
+
         if ($form->isSubmitted() && $form->isValid()) {
             $feature->setUser($this->getUser());
             $feature->setCreatedAt(\date_create());
@@ -61,5 +63,17 @@ class FeatureController extends AbstractController
         return $this->render('feature/add.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/feature/search", name="feature_search_api")
+     */
+    public function ajaxSearch(Request $request, SerializerInterface $serializer)
+    {
+        $features = $this->featureRepo->findByName($request->get('q'));
+
+        return $this->json([
+            'features' => $this->featureRepo->findByName($request->get('q')),
+        ], 200, [], ['groups' => 'search']);
     }
 }

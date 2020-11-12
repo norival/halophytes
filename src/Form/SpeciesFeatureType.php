@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,10 +31,12 @@ class SpeciesFeatureType extends AbstractType
                 'required'    => false,
             ])
             ->add('feature', EntityType::class, [
-                'class'       => Feature::class,
-                'placeholder' => 'New feature',
-                'empty_data'  => 'new',
-                'required'    => false,
+                'class'      => Feature::class,
+                'empty_data' => 'new',
+                'required'   => false,
+                'attr'       => [
+                    'hidden' => true,
+                ]
             ])
             ->add('value', TextType::class, [
                 'label' => 'Feature value',
@@ -44,11 +47,9 @@ class SpeciesFeatureType extends AbstractType
             ])
             ->add('value_min', NumberType::class, [
                 'label'    => 'Feature min value',
-                /* 'disabled' => true, */
             ])
             ->add('value_max', NumberType::class, [
                 'label'    => 'Feature max value',
-                /* 'disabled' => true, */
             ])
             ->add('article', EntityType::class, [
                 'class'        => Article::class,
@@ -66,19 +67,21 @@ class SpeciesFeatureType extends AbstractType
                 'mapped'   => false,
                 'embed'    => true,
                 'required' => false,
-                /* 'disabled' => true, */
             ])
             ->add('new_feature', FeatureType::class, [
                 'mapped'   => false,
                 'embed'    => true,
                 'required' => false,
-                /* 'disabled' => true, */
             ])
             ->add('new_article', ArticleType::class, [
                 'mapped'   => false,
                 'embed'    => true,
                 'required' => false,
-                /* 'disabled' => true, */
+            ])
+            ->add('search_feature', SearchType::class, [
+                'mapped'   => false,
+                'label' => 'Feature',
+                'required' => false,
             ])
         ;
 

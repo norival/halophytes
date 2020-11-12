@@ -12,11 +12,20 @@
             {{ form_widget(form.new_species) }}
         </fieldset>
 
-        {{ form_row(form.feature) }}
-        <fieldset id="new-feature" class="form-group">
-            {{ form_label(form.new_feature) }}
-            {{ form_widget(form.new_feature) }}
-        </fieldset>
+        <div class="searchBoxWrapper">
+            {{ form_widget(form.feature) }}
+            <div class="searchWidget">
+                {{ form_label(form.search_feature) }}
+                {{ form_widget(form.search_feature) }}
+                <ul class="searchResults" id="search-feature-results"></ul>
+            </div>
+        </div>
+        <div id="new-feature" class="newData">
+            <fieldset id="new-feature" class="form-group">
+                {{ form_label(form.new_feature) }}
+                {{ form_widget(form.new_feature) }}
+            </fieldset>
+        </div>
 
         <fieldset id="feature-value" class="form-group">
             {{ form_label(form.value) }}

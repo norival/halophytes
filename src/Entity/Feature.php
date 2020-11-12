@@ -6,6 +6,7 @@ use App\Repository\FeatureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -22,12 +23,14 @@ class Feature
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("search")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
+     * @Groups("search")
      */
     private $name;
 
@@ -39,6 +42,7 @@ class Feature
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
+     * @Groups("search")
      */
     private $unit;
 

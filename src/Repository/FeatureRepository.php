@@ -19,6 +19,21 @@ class FeatureRepository extends ServiceEntityRepository
         parent::__construct($registry, Feature::class);
     }
 
+    /**
+    * @return Feature[] Returns an array of Feature objects
+    */
+    public function findByName($value)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.name LIKE :val')
+            ->setParameter('val', '%' . $value . '%')
+            ->orderBy('f.name', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Feature[] Returns an array of Feature objects
     //  */
