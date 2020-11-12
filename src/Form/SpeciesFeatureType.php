@@ -31,12 +31,16 @@ class SpeciesFeatureType extends AbstractType
                 'required'    => false,
             ])
             ->add('feature', EntityType::class, [
-                'class'      => Feature::class,
-                'empty_data' => 'new',
-                'required'   => false,
-                'attr'       => [
-                    'hidden' => true,
+                'class'    => Feature::class,
+                'required' => false,
+                'attr'     => [
+                    /* 'hidden' => true, */
                 ]
+            ])
+            ->add('search_feature', SearchType::class, [
+                'mapped'   => false,
+                'label'    => 'Feature',
+                'required' => false,
             ])
             ->add('value', TextType::class, [
                 'label' => 'Feature value',
@@ -76,11 +80,6 @@ class SpeciesFeatureType extends AbstractType
             ->add('new_article', ArticleType::class, [
                 'mapped'   => false,
                 'embed'    => true,
-                'required' => false,
-            ])
-            ->add('search_feature', SearchType::class, [
-                'mapped'   => false,
-                'label'    => 'Feature',
                 'required' => false,
             ])
         ;

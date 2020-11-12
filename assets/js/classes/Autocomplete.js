@@ -58,7 +58,7 @@ export default class Autocomplete {
             event.preventDefault();
 
             this.searchBox.value  = event.target.innerText;
-            this.valueField.value = event.target.dataset.resultId;
+            this.valueField.querySelector(`[value="${event.target.dataset.resultId}"]`).selected = true;
 
             this._hide();
         }
